@@ -1,6 +1,6 @@
 package com.cuzan.hireme.model;
 
-import com.cuzan.hireme.enums.Roles;
+import com.cuzan.hireme.dto.JobslotDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +17,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobSlot {
+
+
+
+    public JobSlot(JobslotDTO jobslotDTO){
+        this.roleName = jobslotDTO.getRoleName();
+        this.companyName = jobslotDTO.getCompanyName();
+        this.description = jobslotDTO.getDescription();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
