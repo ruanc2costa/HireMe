@@ -1,5 +1,6 @@
 package com.cuzan.hireme.model;
 
+import com.cuzan.hireme.enums.Roles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,8 +9,9 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
-@Entity
+@Entity(name = "jobslot")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,6 +20,7 @@ public class JobSlot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "jobslot_id")
     private Long id;
 
     @NotNull
@@ -26,7 +29,6 @@ public class JobSlot {
     @NotNull
     private String companyName;
 
-
     private Date startingDate;
 
     @NotNull
@@ -34,7 +36,11 @@ public class JobSlot {
 
     private String description;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "recruiter_id")
     private Recruiter recruiter;
+
+    @OneToMany (mappedBy = "jobSlot")
+    private List<Application> applications;
+
 }
